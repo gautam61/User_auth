@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="userAuth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <script src="./lib/angular.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+    
+    <div class="container-fluid">
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#">User Authoriation form</a>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#/register">Register</a></li>
+                <li><a href="#/login">Login</a></li>
+            </ul>
+        </nav>
+        <div ng-view></div>
+    </div>
+
+    <script src="./lib/angular-route.min.js"></script>
+    <script src="./index.js"></script>
+
+    <script src="./controller/loginController.js"></script>
+    <script src="./controller/registerController.js"></script>
+    <script src="./controller/homeController.js"></script>
+    <script src="./service/registerService.js"></script>
+    <script src="./service/loginService.js"></script>
+    
+</body>
+</html>
