@@ -19,20 +19,20 @@ app.use(express.static(`${__dirname}/A1_SRC`))
 //    .json({message:'You can post to this url'})
 // });
 
+const allUsers = (req, res) => {
+    const users = JSON.parse(fs.readFileSync(`${__dirname}/user_data/signup.json`));
+  
+    res.status(200).json({
+        status:'success',
+        result:users.length,
+        data:{
+            users
+        }
+      })
+  }
 
-app.get('/api/users', (req, res) => {
-  const users = JSON.parse(fs.readFileSync(`${__dirname}/user_data/signup.json`));
-
-  res.status(200).json({
-      status:'success',
-      result:users.length,
-      data:{
-          users
-      }
-    })
-});
-
-app.post('/api/signup', (req, res) => {
+ 
+ const userSignup = (req, res) => {
     // console.log(req.body);
     const users = JSON.parse(fs.readFileSync(`${__dirname}/user_data/signup.json`));
     const email = req.body.userDetails.emailId
@@ -52,16 +52,16 @@ app.post('/api/signup', (req, res) => {
     }
 
     
-})
+}
 
-
-app.post('/api/login', (req, res) => {
+const userLogin = (req, res) => {
 
     const users = JSON.parse(fs.readFileSync(`${__dirname}/user_data/signup.json`));
     const email = req.body.loginDetails.emailId
     const password = req.body.loginDetails.password;
     const foundEmail = users.some(el => el.emailId === email);
     const foundPassword = users.some(el => el.password === password);
+    
     if(foundEmail === true && foundPassword === true){
         console.log('found')
     }
@@ -69,7 +69,16 @@ app.post('/api/login', (req, res) => {
         message:'success',
         data:'logged in successfully'
     })
-}) 
+}
+
+
+
+
+app.get('/api/users',allUsers);
+
+app.post('/api/signup',userSignup)
+
+app.post('/api/login', userLogin) 
 
 
 
